@@ -1,12 +1,30 @@
 <template>
   <div id="m-header">
     <div class="header-wrap" :style="{ height: isPc ? '90px' : '60px' }">
-      <div class="header-log" :style="{'justify-content':isPc?'space-between':'center'}">
+      <div
+        class="header-log"
+        :style="{ 'justify-content': isPc ? 'space-between' : 'center' }"
+      >
         <div class="line" v-if="isPc"></div>
         <div class="blog-name">{{ userName || "博客" }}</div>
         <div class="line" v-if="isPc"></div>
       </div>
-      <header-tab-bar />
+      <header-tab-bar v-if="isPc" />
+      <div class="toggle">
+        <span
+          class="toggle-line"
+          v-for="(line, index) in toggleLineData"
+          :key="index"
+          :style="{
+            width: line.width,
+            top: line.top,
+            transform: line.transform,
+            opacity: line.opacity,
+            transition: 'all .3s'
+          }"
+        >
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -22,8 +40,55 @@ export default {
     return {
       userName: "Ming.",
       isPc: true,
-      screenWidth:document.documentElement.clientWidth
+      toggleLineData: [],
+      lineStyle: {
+        normalLineData: [
+          {
+            width: "100%",
+            top: "0px",
+            transform: "rotateZ(0deg)",
+            opacity: "1"
+          },
+          {
+            width: "100%",
+            top: "0px",
+            transform: "rotateZ(0deg)",
+            opacity: "1"
+          },
+          {
+            width: "100%",
+            top: "0px",
+            transform: "rotateZ(0deg)",
+            opacity: "1"
+          }
+        ],
+        closeLineData: [
+          {
+            width: "100%",
+            top: "6px",
+            transform: "rotateZ(-45deg)",
+            opacity: "1"
+          },
+          {
+            width: "100%",
+            top: "0px",
+            transform: "rotateZ(0deg)",
+            opacity: "0"
+          },
+          {
+            width: "100%",
+            top: "-6px",
+            transform: "rotateZ(45deg)",
+            opacity: "1"
+          }
+        ]
+      },
+
+      screenWidth: document.documentElement.clientWidth
     };
+  },
+  created() {
+    this.toggleLineData = this.lineStyle.normalLineData;
   },
   mounted() {
     var _this = this;
@@ -34,7 +99,6 @@ export default {
     };
   },
   computed: {
-    
     // ...mapGetters(["screen", "blogInfo"])
   },
   watch: {
@@ -87,4 +151,22 @@ export default {
             height:2px
             background-color:black
             transition: width .3s
+
+  .toggle
+      width: 24px
+      height: 24px
+      background-color: #f9f9f9
+      padding: 5px
+      cursor: pointer
+      line-height: 0
+      .toggle-line
+        position: relative
+        display: inline-block
+        vertical-align: top
+        width: 100%
+        height: 2px
+        margin-top: 4px
+        background-color: $color-main
+        &:first-child
+          margin-top: 0px
 </style>

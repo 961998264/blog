@@ -41,7 +41,9 @@ module.exports = {
     },
     chainWebpack: config => { // webpack链接API，用于生成和修改webapck配置，
         config.resolve.alias
+        .set('CONFIG',resolve('src/config'))
         .set('SRC',resolve('src'))
+        .set('API',resolve('api'))
         .set('assets',resolve('src/assets'))
         .set('components',resolve('src/components'))
         .set('layout',resolve('src/layout'))
@@ -51,7 +53,9 @@ module.exports = {
         .set('VIEWS',resolve('src/views'))
         .set('API',resolve('src/api'))
         .set('COMMON',resolve('src/common'))
+        .set('COMMON',resolve('src/common'))
         .set('STYLUS',resolve('src/stylus'))
+        .set('STORE',resolve('src/store'))
         if (debug) {
             // 本地开发配置
         } else {

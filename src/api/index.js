@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Qs from 'qs'
 import store from 'STORE/index'
-
+import * as article from './module/article'
 import {
   getAccessToken,
   removeAccessToken,
@@ -399,4 +399,8 @@ export default {
       params: params
     })
   }
+}
+
+export {
+  article
 }

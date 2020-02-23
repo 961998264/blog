@@ -7,7 +7,7 @@
       <!-- header 结束 -->
       <!-- content -->
       <div class="view-wrap" >
-        <!-- <router-view></router-view> -->
+        <router-view></router-view>
       </div>
       <!-- content 结束 -->
       <!-- footer -->

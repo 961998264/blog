@@ -10,7 +10,7 @@
         <div class="line" v-if="isPc"></div>
       </div>
       <header-tab-bar v-if="isPc" />
-      <div class="toggle">
+      <div class="toggle" v-if="!isPc" @click="toggle">
         <span
           class="toggle-line"
           v-for="(line, index) in toggleLineData"
@@ -26,6 +26,19 @@
         </span>
       </div>
     </div>
+    <el-collapse-transition>
+      <div class="mobile-tab-wrap" v-show="!isPc && showMobileTabs">
+        <div
+          class="tab"
+          v-for="(tab, index) in tabs"
+          :key="index"
+          @click="selectTab(tab)"
+        >
+          <i class="iconfont" :class="tab.icon"></i>
+          <span>{{ tab.name }}</span>
+        </div>
+      </div>
+    </el-collapse-transition>
   </div>
 </template>
 
@@ -41,6 +54,44 @@ export default {
       userName: "Ming.",
       isPc: true,
       toggleLineData: [],
+      showMobileTabs: false,
+      tabs: [
+        {
+          name: "首页",
+          icon: "icon-home",
+          to: "home"
+        },
+        {
+          name: "分类/标签",
+          icon: "icon-tag",
+          to: "categories"
+        },
+        {
+          name: "归档",
+          icon: "icon-archives",
+          to: "archives"
+        },
+        {
+          name: "关于",
+          icon: "icon-about",
+          to: "about"
+        },
+        {
+          name: "友链",
+          icon: "icon-friends-link",
+          to: "friends"
+        },
+        {
+          name: "更多",
+          icon: "icon-more",
+          to: "morefunc"
+        },
+        {
+          name: "搜索",
+          icon: "icon-search",
+          to: "search"
+        }
+      ],
       lineStyle: {
         normalLineData: [
           {
@@ -102,11 +153,22 @@ export default {
     // ...mapGetters(["screen", "blogInfo"])
   },
   watch: {
-    screenWidth(value) {
-      this.isPc = true;
-      if (value <= 768) {
-        this.isPc = false;
-      }
+    screenWidth: {
+      handler: function(value){
+        this.isPc = true;
+        if (value <= 768) {
+          this.isPc = false;
+        }
+      },
+      immediate: true
+    }
+  },
+  methods: {
+    toggle() {
+      this.showMobileTabs = !this.showMobileTabs;
+      this.toggleLineData = this.showMobileTabs
+        ? this.lineStyle.closeLineData
+        : this.lineStyle.normalLineData;
     }
   }
 };
@@ -166,7 +228,40 @@ export default {
         width: 100%
         height: 2px
         margin-top: 4px
-        background-color: $color-main
+        background-color: black
         &:first-child
           margin-top: 0px
+   .mobile-tab-wrap
+    width: 100%
+    transition: all .3s
+    // overflow: hidden
+    border-top: 1px solid #eeeeee
+    .tab
+      position: relative
+      width: 100%
+      padding: 8px 15px
+      font-size: 12px
+      line-height: 1
+      .iconfont
+        font-size: 12px
+        margin-right: 5px
+
+@keyframes logo-name {
+  from {
+    margin-left: -60px;
+    opacity: 0
+  }
+  to {
+    margin-left: 0px;
+    opacity: 1
+  }
+}
+@keyframes logo-line {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 70px;
+  }
+}
 </style>

@@ -4,6 +4,14 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './store'
+
+import VueSocketIO from 'vue-socket.io'
+
+Vue.use(new VueSocketIO({
+  debug: true,
+  connection: 'http://localhost:3001',  
+}))
+
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 new Vue({

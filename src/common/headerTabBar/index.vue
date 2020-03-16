@@ -1,7 +1,13 @@
 <template>
   <div id="header-tab-bar">
-    <div class="tab" v-for="(item, index) in tabs" :key="index">
+    <div
+      class="tab"
+      v-for="(item, index) in tabs"
+      :key="index"
+      @click="selectTab(item)"
+    >
       <i class="iconfont icon" :class="item.icon"></i>
+
       <span>{{ item.name }}</span>
     </div>
   </div>
@@ -9,46 +15,14 @@
 
 <script>
 export default {
+  props: ["tabs"],
   data() {
-    return {
-      tabs: [
-        {
-          name: "首页",
-          icon: "icon-home2",
-          to: "home"
-        },
-        {
-          name: "分类",
-          icon: "icon-biaoqian-",
-          to: "categories"
-        },
-        {
-          name: "归档",
-          icon: "icon-guidang",
-          to: "archives"
-        },
-        {
-          name: "关于",
-          icon: "icon-iconset0142",
-          to: "about"
-        },
-        {
-          name: "友链",
-          icon: "icon-lianjie",
-          to: "friends"
-        },
-        {
-          name: "更多",
-          icon: "icon-gengduo",
-          to: "morefunc"
-        },
-        {
-          name: "搜索",
-          icon: "icon-sousuo",
-          to: "search"
-        }
-      ]
-    };
+    return {};
+  },
+  methods: {
+    selectTab(tab) {
+      this.$emit("tab-click", tab);
+    }
   }
 };
 </script>

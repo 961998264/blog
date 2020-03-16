@@ -9,7 +9,7 @@
         <div class="blog-name">{{ userName || "博客" }}</div>
         <div class="line" v-if="isPc"></div>
       </div>
-      <header-tab-bar v-if="isPc" />
+      <header-tab-bar :tabs="tabs" v-if="isPc" @tab-click="selectTab" />
       <div class="toggle" v-if="!isPc" @click="toggle">
         <span
           class="toggle-line"
@@ -58,39 +58,44 @@ export default {
       tabs: [
         {
           name: "首页",
-          icon: "icon-home",
+          icon: "icon-home2",
           to: "home"
         },
         {
-          name: "分类/标签",
-          icon: "icon-tag",
+          name: "分类",
+          icon: "icon-biaoqian-",
           to: "categories"
         },
         {
           name: "归档",
-          icon: "icon-archives",
+          icon: "icon-guidang",
           to: "archives"
         },
         {
           name: "关于",
-          icon: "icon-about",
+          icon: "icon-iconset0142",
           to: "about"
         },
         {
           name: "友链",
-          icon: "icon-friends-link",
+          icon: "icon-lianjie",
           to: "friends"
         },
         {
           name: "更多",
-          icon: "icon-more",
+          icon: "icon-gengduo",
           to: "morefunc"
         },
         {
           name: "搜索",
-          icon: "icon-search",
+          icon: "icon-sousuo",
           to: "search"
-        }
+        },
+         {
+          name: "聊天室",
+          icon: "icon-sousuo",
+          to: "chart_login"
+        },
       ],
       lineStyle: {
         normalLineData: [
@@ -154,7 +159,7 @@ export default {
   },
   watch: {
     screenWidth: {
-      handler: function(value){
+      handler: function(value) {
         this.isPc = true;
         if (value <= 768) {
           this.isPc = false;
@@ -164,6 +169,15 @@ export default {
     }
   },
   methods: {
+    selectTab(tab) {
+      if (tab.to === "morefunc") {
+        this.$toast("更多功能待开发...");
+        return;
+      }
+      this.toggle();
+    
+      this.$router.push({ name: tab.to });
+    },
     toggle() {
       this.showMobileTabs = !this.showMobileTabs;
       this.toggleLineData = this.showMobileTabs

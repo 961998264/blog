@@ -1,12 +1,12 @@
 <template>
   <div id="appindex">
-        <!-- 博客页面 -->
-    <div class="content-wrap" >
+    <!-- 博客页面 -->
+    <div class="content-wrap">
       <!-- header -->
-      <my-header />
+      <my-header style="z-index:5"/>
       <!-- header 结束 -->
       <!-- content -->
-      <div class="view-wrap" >
+      <div class="view-wrap">
         <router-view></router-view>
       </div>
       <!-- content 结束 -->
@@ -16,22 +16,78 @@
     </div>
     <right-nav />
     <!-- 博客页面 结束 -->
+
+    <!-- 返回顶部 -->
+    <transition name="slide-fade">
+      <div class="to-top" @click="scrollToTarget(0)" v-show="showScrollToTop">
+        <span
+          class="to-top-line"
+          v-for="(line, index) in lineData"
+          :key="index"
+          :style="{
+            height: line.height,
+            left: line.left,
+            transform: line.transform
+          }"
+        >
+        </span>
+      </div>
+    </transition>
+    <!-- 返回顶部 结束 -->
   </div>
 </template>
 <script>
-  import myHeader from 'COMMON/mHeader/Header'
-  import myFooter from './common/mFooter/Footer'
-  import rightNav from './common/rightNav/RightNav'
+import myHeader from "COMMON/mHeader/Header";
+import myFooter from "./common/mFooter/Footer";
+import rightNav from "./common/rightNav/RightNav";
 
+export default {
+  name: "app",
+  components: {
+    myHeader,
+    myFooter,
+    rightNav
+  },
+  data(){
+    return {
+      showScrollToTop:false,
+       lineData: [
+        {
+          height: '50%',
+          left: '3px',
+          transform: 'rotateZ(45deg)'
+        },
+        {
+          height: '100%',
+          top: '0px',
+          transform: 'rotateZ(0deg)'
+        },
+        {
+          height: '50%',
+          left: '-3px',
+          transform: 'rotateZ(-45deg)'
+        }
+      ],
+    }
+  },
+  mounted(){
+    window.addEventListener('scroll',this.scrollListener)
+  },
+  beforeDestory(){
 
-  export default {
-    name: 'app',
-    components: {
-      myHeader,
-      myFooter,
-      rightNav,
-    },
+  },
+  methods:{
+    scrollListener(){
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+
+      if(scrollTop >=60){
+        this.showScrollToTop = true
+      }else{
+        this.showScrollToTop = false
+      }
+    }
   }
+};
 </script>
 
 <style lang="stylus" src="STYLUS/main.styl"></style>
@@ -98,5 +154,6 @@
   transition: opacity .3s
 .fade-enter, .fade-leave-to
   opacity: 0
-</style>
 
+
+</style>

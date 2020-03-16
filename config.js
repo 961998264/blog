@@ -10,15 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
-      '/a/': {
-        target: 'http://localhost/blog/index.php',
-        changeOrigin: true,
-        // pathRewrite: {
-        //     '^/api': ''
-        // }
-      }
-    },
+    // proxyTable: {
+    //   '/a/': {
+    //     target: 'http://localhost/blog/index.php',
+    //     changeOrigin: true,
+    //     // pathRewrite: {
+    //     //     '^/api': ''
+    //     // }
+    //   }
+    // },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

@@ -1,0 +1,373 @@
+<template>
+  <transition name="slide-left">
+    <div class="chart">
+      <!-- chart head -->
+      <div class="chart-head">
+        <div>
+          <i class="iconfont icon icon-jiqiren"></i>
+        </div>
+        <div class="qunliao">
+          <h2 class="title"><i class="iconfont icon icon-qunliao">群聊</i></h2>
+        </div>
+        <div>
+          <i class="iconfont icon icon-ziyuan"></i>
+        </div>
+      </div>
+
+      <!-- chart centnt -->
+      <div class="chart-centent">
+        <div v-for="item of msgs" class="chart-item">
+          <div class="msg-date">
+            {{ item.date }}
+          </div>
+          <div class="msg-from">
+            <img class="header-img" :src="item.avatarUrl" alt="" />
+            <span class="loc">[{{ item.loc }}]</span>
+            <span class="msg-author">{{ item.from }}</span>
+          </div>
+          <div class="msg-content">{{ item.content }}</div>
+        </div>
+      </div>
+
+      <!-- chart input -->
+      <div class="chart-input">
+        <transition name="slide-left">
+          <div v-show="isShowEmoji" class="emoji-display">
+            <ul>
+              <li v-for="item of emojis" @click="selectEmojis(item)">
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+        </transition>
+        <div class="enjoy" @click="isShowEmoji = !isShowEmoji">
+          <i class="iconfont icon-biaoqing"></i>
+        </div>
+        <el-input
+          v-model="input"
+       
+          @keyup.enter="sendMsg"
+          placeholder="左上角还有自能机器人哦"
+        ></el-input>
+        <el-button @click="sendMsg" type="primary">发送</el-button>
+      </div>
+    </div>
+  </transition>
+</template>
+
+<script>
+import Api from "../../../api/index";
+export default {
+  data() {
+    return {
+      msgs: (localStorage.msgs_group &&
+        JSON.parse(localStorage.msgs_group)) || [
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content:
+            "呜呜呜呜呜呜呜请求请求群群群群群群群群群群群群群群群群群群群群群群群群群群群群群群群群",
+          self: true
+        },
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content: "test",
+          self: true
+        },
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content: "test",
+          self: true
+        },
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content: "test",
+          self: true
+        },
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content: "test",
+          self: true
+        },
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content: "test",
+          self: true
+        },
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content: "test",
+          self: true
+        },
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content: "test",
+          self: true
+        },
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content: "test",
+          self: true
+        },
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content: "test",
+          self: true
+        },
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content: "test",
+          self: true
+        },
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content: "test",
+          self: true
+        },
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content: "test",
+          self: true
+        },
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content: "test",
+          self: true
+        },
+        {
+          date: "2015-11-09 09:57:08",
+          loc: "江西省南昌市",
+          from: "linyongming",
+          avatarUrl: require("../../../assets/images/touxiang1.jpg"),
+          content: "test",
+          self: true
+        }
+      ],
+      isShowEmoji: false,
+      input: "",
+      emojis: [
+        "😂",
+        "🙏",
+        "😄",
+        "😏",
+        "😇",
+        "😅",
+        "😌",
+        "😘",
+        "😍",
+        "🤓",
+        "😜",
+        "😎",
+        "😊",
+        "😳",
+        "🙄",
+        "😱",
+        "😒",
+        "😔",
+        "😷",
+        "👿",
+        "🤗",
+        "😩",
+        "😤",
+        "😣",
+        "😰",
+        "😴",
+        "😬",
+        "😭",
+        "👻",
+        "👍",
+        "✌️",
+        "👉",
+        "👀",
+        "🐶",
+        "🐷",
+        "😹",
+        "⚡️",
+        "🔥",
+        "🌈",
+        "🍏",
+        "⚽️",
+        "❤️",
+        "🇨🇳"
+      ]
+    };
+  },
+  methods: {
+    selectEmojis(item) {
+      this.input += item;
+    },
+    sendMsg() {
+      //发送信息给服务端
+      this.$socket.emit("chat message", this.input);
+
+      this.$socket.on("chat message", data => {
+        console.log(data);
+      });
+      console.log(this.input);
+      // Api.sendsockit({ msg: this.input, userName: "林勇明" });
+      this.input = "";
+      this.isShowEmoji = false;
+    }
+  }
+};
+</script>
+
+<style lang="stylus" scoped>
+.slide-left-enter-active
+  transition all .4s ease
+
+.slide-left-leave-active
+  transition all .4s ease
+
+.slide-left-enter
+  transform: translateX(-375px)
+  opacity 0
+
+.slide-left-leave-active
+  transform: translateX(-375px)
+  opacity 0
+.chart
+    position absolute
+    left 50%
+    top 50%
+    transform translate(-50%,-50%)
+    height 700px
+    width 40%
+    border 1px sold red
+    display flex
+    flex-direction column
+    justify-content center
+    align-items center
+    overflow hidden
+  .chart-head
+    display flex
+    justify-content space-between
+    align-items center
+    padding 0 20px
+    width 100%
+    height 50px
+    background-color #2196f3
+    color #fff
+  .qunliao
+    .icon-qunliao
+     &:before
+      margin-right 4px
+
+.chart-box
+    width:80%
+    height 500px
+    border 1px solid red
+    position relative
+    .input-box
+        position absolute
+        bottom 0
+        left 0
+
+.chart-centent
+  flex: 1;
+  padding 20px
+  width: 100%;
+  background-color: rgba(0, 0, 0, .1);
+  overflow: auto;
+
+  .msg-date
+    text-align: center;
+    color: gray;
+    font-size: 80%;
+  .msg-from
+    display: flex;
+    align-items: center;
+    .loc
+      color: gray;
+      font-size: 60%;
+      margin-right: 5px;
+
+  .header-img
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    margin-right 8px
+   .msg-content
+      margin-top: 5px;
+      background-color: white;
+      width: 200px;
+      padding: 6px 10px;
+      border-radius: 10px;
+
+.chart-item
+  padding 20px 0
+.chart-input
+  position: relative;
+  display: flex;
+  height: 40px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, .1);
+  .emoji-display
+    position absolute
+    width 100%
+    height 240px
+    background white
+    top -240px
+    ul
+      width 100%
+      padding 16px 6px 0
+      height 100%
+      display flex
+      flex-wrap wrap
+      li
+        font-size 28px
+        margin 0 8px 0 0
+        text-align center
+        cursor pointer
+
+.icon
+  font-size 22px
+  cursor pointer
+.enjoy
+  width 50px
+  text-align center
+ .icon-biaoqing
+  font-size 26px
+  line-height 40px
+</style>

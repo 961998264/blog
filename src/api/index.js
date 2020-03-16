@@ -2,6 +2,8 @@ import axios from 'axios'
 import Qs from 'qs'
 import store from 'STORE/index'
 import * as article from './module/article'
+import * as tags from './module/tags'
+import * as archives from './module/archives'
 import {
   getAccessToken,
   removeAccessToken,
@@ -63,13 +65,13 @@ export default {
   /**
    * 管理员登录
    */
-  adminLogin (params) {
+  adminLogin(params) {
     return axios.post('a/login', Qs.stringify(params))
   },
   /**
    * 获取七牛token
    */
-  getQiniuToken (withWater) {
+  getQiniuToken(withWater) {
     return axios.get('a/qiniu/token', {
       params: {
         bucket: 'blogimg',
@@ -80,7 +82,7 @@ export default {
   /**
    * 上传图片到七牛
    */
-  uploadToQiniu (params) {
+  uploadToQiniu(params) {
     return axios.post('http://up-z2.qiniu.com', params, {
       headers: {
         'content-type': 'multipart/form-data'
@@ -91,79 +93,79 @@ export default {
   /**
    * 获取博客配置
    */
-  getBlogConfig () {
+  getBlogConfig() {
     return axios.get('a/webConfig')
   },
   /**
    * 修改博客配置
    */
-  modifyBlogConfig (params) {
+  modifyBlogConfig(params) {
     return axios.post('a/webConfig/modify', Qs.stringify(params))
   },
   /**
    * 获取 关于我 页面
    */
-  getAboutMe () {
+  getAboutMe() {
     return axios.get('a/webConfig/getAbout')
   },
   /**
    * 修改 关于我 页面
    */
-  modifyAboutMe (params) {
+  modifyAboutMe(params) {
     return axios.post('a/webConfig/modifyAbout', Qs.stringify(params))
   },
   /**
    * 获取首页面板显示的统计信息
    */
-  getHomeStatistics () {
+  getHomeStatistics() {
     return axios.get('a/statistics/home')
   },
   /**
    * 获取系统日志
    */
-  getSysLog (params) {
-    return axios.get('a/sys/log', {params: params})
+  getSysLog(params) {
+    return axios.get('a/sys/log', { params: params })
   },
   /**
    * 添加分类
    */
-  addCategory (categoryName) {
-    return axios.post('a/category/add', Qs.stringify({categoryName: categoryName}))
+  addCategory(categoryName) {
+    return axios.post('a/category/add', Qs.stringify({ categoryName: categoryName }))
   },
   /**
    * 添加标签
    */
-  addTag (tagName) {
-    return axios.post('a/tag/add', Qs.stringify({tagName: tagName}))
+  addTag(tagName) {
+    return axios.post('a/tag/add', Qs.stringify({ tagName: tagName }))
   },
   /**
    * 修改分类
    */
-  modifyCategory (params) {
+  modifyCategory(params) {
     return axios.post('a/category/modify', Qs.stringify(params))
   },
   /**
    * 修改标签
    */
-  modifyTag (params) {
+  modifyTag(params) {
     return axios.post('a/tag/modify', Qs.stringify(params))
   },
   /**
    * 删除分类
    */
-  deleteCategory (categoryId) {
-    return axios.post('a/category/delete', Qs.stringify({categoryId: categoryId}))
+  deleteCategory(categoryId) {
+    return axios.post('a/category/delete', Qs.stringify({ categoryId: categoryId }))
   },
   /**
    * 删除标签
    */
-  deleteTag (tagId) {
-    return axios.post('a/tag/delete', Qs.stringify({tagId: tagId}))
+  deleteTag(tagId) {
+    return axios.post('a/tag/delete', Qs.stringify({ tagId: tagId }))
   },
   /**
    * 获取分类列表
    */
-  getCategoryList (params) {
+  getCategoryList(params) {
     return axios.get('a/category/list', {
       params: params
     })
@@ -171,7 +173,7 @@ export default {
   /**
    * 获取标签列表
    */
-  getTagList (params) {
+  getTagList(params) {
     return axios.get('a/tag/list', {
       params: params
     })
@@ -179,7 +181,7 @@ export default {
   /**
    * 获取分类
    */
-  getCategory (categoryId) {
+  getCategory(categoryId) {
     return axios.get('a/category', {
       params: {
         categoryId: categoryId
@@ -189,7 +191,7 @@ export default {
   /**
    * 获取标签
    */
-  getTag (tagId) {
+  getTag(tagId) {
     return axios.get('a/tag', {
       params: {
         tagId: tagId
@@ -199,31 +201,31 @@ export default {
   /**
    * 保存文章
    */
-  saveArticle (params) {
+  saveArticle(params) {
     return axios.post('a/article/save', Qs.stringify(params))
   },
   /**
    * 发布文章
    */
-  publishArticle (params) {
+  publishArticle(params) {
     return axios.post('a/article/publish', Qs.stringify(params))
   },
   /**
    * 编辑文章
    */
-  modifyArticle (params) {
+  modifyArticle(params) {
     return axios.post('a/article/modify', Qs.stringify(params))
   },
   /**
    * 删除文章
    */
-  deleteArticle (articleId) {
-    return axios.post('a/article/delete', Qs.stringify({id: articleId}))
+  deleteArticle(articleId) {
+    return axios.post('a/article/delete', Qs.stringify({ id: articleId }))
   },
   /**
    * 获取文章信息
    */
-  getArticle (articleId) {
+  getArticle(articleId) {
     return axios.get('a/article/info', {
       params: {
         id: articleId
@@ -233,7 +235,7 @@ export default {
   /**
    * 获取文章列表
    */
-  getArticleList (params) {
+  getArticleList(params) {
     return axios.get('a/article/list', {
       params: params
     })
@@ -241,7 +243,7 @@ export default {
   /**
    * 获取友链列表
    */
-  getFriendsList (params) {
+  getFriendsList(params) {
     return axios.get('a/friends/list', {
       params: params
     })
@@ -249,31 +251,31 @@ export default {
   /**
    * 添加友链
    */
-  addFriend (params) {
+  addFriend(params) {
     return axios.post('a/friends/add', Qs.stringify(params))
   },
   /**
    * 编辑友链
    */
-  modifyFriend (params) {
+  modifyFriend(params) {
     return axios.post('a/friends/modify', Qs.stringify(params))
   },
   /**
    * 删除友链
    */
-  deleteFriend (friendId) {
-    return axios.post('a/friends/delete', Qs.stringify({friendId: friendId}))
+  deleteFriend(friendId) {
+    return axios.post('a/friends/delete', Qs.stringify({ friendId: friendId }))
   },
   /**
    * 获取友链类型列表
    */
-  getFriendTypeList () {
+  getFriendTypeList() {
     return axios.get('a/friends/typeList')
   },
   /**
    * 获取所有评论列表
    */
-  getAllCommentsList (params) {
+  getAllCommentsList(params) {
     return axios.get('a/comments/alllist', {
       params: params
     })
@@ -281,7 +283,7 @@ export default {
   /**
    * 获取文章评论列表
    */
-  getComments (articleId) {
+  getComments(articleId) {
     return axios.get('a/comments/list', {
       params: {
         articleId: articleId
@@ -291,44 +293,44 @@ export default {
   /**
    * 添加评论
    */
-  adminReplyComments (params) {
+  adminReplyComments(params) {
     return axios.post('a/comments/add', Qs.stringify(params))
   },
   /**
    * 删除评论
    */
-  deleteComments (id) {
-    return axios.post('a/comments/delete', Qs.stringify({commentsId: id}))
+  deleteComments(id) {
+    return axios.post('a/comments/delete', Qs.stringify({ commentsId: id }))
   },
   /**
    * 获取 我的简历 页面
    */
-  getResume () {
+  getResume() {
     return axios.get('a/webConfig/getResume')
   },
   /**
    * 修改 我的简历 页面
    */
-  modifyResume (params) {
+  modifyResume(params) {
     return axios.post('a/webConfig/modifyResume', Qs.stringify(params))
   },
   // ---------------------------------------------以下是博客页面使用的接口---------------------------------------------,
   /**
    * 获取 关于我 页面
    */
-  getBlogAboutMe () {
+  getBlogAboutMe() {
     return axios.get('w/getAbout')
   },
   /**
    * 获取博客信息
    */
-  getBlogInfo () {
+  getBlogInfo() {
     return axios.get('w/blogInfo')
   },
   /**
    * 获取文章列表
    */
-  getBlogArticleList (params) {
+  getBlogArticleList(params) {
     return axios.get('w/article/list', {
       params: params
     })
@@ -336,7 +338,7 @@ export default {
   /**
    * 获取文章归档列表
    */
-  getBlogArticleArchives (params) {
+  getBlogArticleArchives(params) {
     return axios.get('w/article/archives', {
       params: params
     })
@@ -344,7 +346,7 @@ export default {
   /**
    * 获取文章信息
    */
-  getBlogArticle (articleId) {
+  getBlogArticle(articleId) {
     return axios.get('w/article', {
       params: {
         id: articleId
@@ -354,25 +356,25 @@ export default {
   /**
    * 获取分类列表
    */
-  getBlogCategoryList () {
+  getBlogCategoryList() {
     return axios.get('w/category/list')
   },
   /**
    * 获取标签列表
    */
-  getBlogTagList () {
+  getBlogTagList() {
     return axios.get('w/tag/list')
   },
   /**
    * 获取友链列表
    */
-  getBlogFriendsList () {
+  getBlogFriendsList() {
     return axios.get('w/friends/list')
   },
   /**
    * 获取文章评论列表
    */
-  getBlogComments (articleId) {
+  getBlogComments(articleId) {
     return axios.get('w/comments/list', {
       params: {
         articleId: articleId
@@ -382,25 +384,33 @@ export default {
   /**
    * 添加评论
    */
-  replyComments (params) {
+  replyComments(params) {
     return axios.post('w/comments/add', Qs.stringify(params))
   },
   /**
    * 获取 我的简历 页面
    */
-  getBlogResume () {
+  getBlogResume() {
     return axios.get('w/getResume')
   },
   /**
    * 按文章标题和简介搜索
    */
-  searchArticle (params) {
+  searchArticle(params) {
     return axios.get('w/article/search', {
+      params: params
+    })
+  },
+
+  sendsockit(params) {
+    return axios.get('http://localhost:3000/socket', {
       params: params
     })
   }
 }
 
 export {
-  article
+  article,
+  tags,
+  archives,
 }

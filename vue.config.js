@@ -53,9 +53,11 @@ module.exports = {
         .set('VIEWS',resolve('src/views'))
         .set('API',resolve('src/api'))
         .set('COMMON',resolve('src/common'))
-        .set('COMMON',resolve('src/common'))
         .set('STYLUS',resolve('src/stylus'))
         .set('STORE',resolve('src/store'))
+        .set('MIXINS',resolve('src/mixins'))
+        .set('UTILS',resolve('src/util'))
+        .set('IMAGES',resolve('src/assets/images'))
         if (debug) {
             // 本地开发配置
         } else {

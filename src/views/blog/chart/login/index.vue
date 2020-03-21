@@ -21,6 +21,7 @@ export default {
   components: {},
   data() {
     return {
+      ok:true,
       name: ""
     };
   },
@@ -32,7 +33,7 @@ export default {
       if (this.name === "") {
         return;
       }
-      this.$router.push('/chart')
+      this.$router.push("/chart");
     },
     showAbout() {}
   }
@@ -41,15 +42,15 @@ export default {
 
 <style scoped lang="stylus">
 .slide-top-enter-active
-  transition: all 0.5s ease-out;
+  transition: all .5s ease-out;
 
 .slide-top-leave-active
   transition: all 0 ease;
 
-.slide-top-enter,
-.slide-top-leave-active
+.slide-top-enter, .slide-top-leave-active
   transform: translateY(-450px);
   opacity: 0;
+
 
 
 .login

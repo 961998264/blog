@@ -92,6 +92,15 @@ export default {
 
 <style lang="stylus" src="STYLUS/main.styl"></style>
 <style lang="stylus">
+.slide-top-enter-active
+  transition: all .5s ease-out;
+
+.slide-top-leave-active
+  transition: all 0.1 ease;
+
+.slide-top-enter, .slide-top-leave-active
+  transform: translateY(-450px);
+  opacity: 0;
 #appindex
   width: 100%
   min-height: 100%

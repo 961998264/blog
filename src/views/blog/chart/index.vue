@@ -69,6 +69,9 @@
 
 <script>
 import Api from "../../../api/index";
+import alert from '../../../components/toast/index'
+// 直接使用
+alert.info({content: '消息提示', duration: 2})
 export default {
   data() {
     return {
@@ -191,6 +194,10 @@ export default {
     };
   },
   mounted() {
+    console.log(alert,'alert')
+    alert.info({
+      content:'content',
+    })
     this.oContent = document.querySelector(".chart-centent");
     this.oContent.scrollTop = this.oContent.scrollHeight;
 

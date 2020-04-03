@@ -1,6 +1,8 @@
 <template>
   <div id="m-footer">
-      FOOTER
+    <div class="footer-wrap">
+      这是一句话简介
+    </div>
   </div>
 </template>
 
@@ -10,18 +12,18 @@ import { mapGetters } from "vuex";
 export default {
   name: "m-footer",
   components: {},
-  data() {
+  data () {
     return {
       runningTime: 0
     };
   },
   computed: {
   },
-  created() {
+  created () {
     this.running();
   },
   methods: {
-    running() {
+    running () {
       let startTime = new Date("2018/08/01 00:00:00");
       let timer = setInterval(() => {
         let time = new Date() - startTime;
@@ -37,27 +39,24 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-#m-footer
-  position: relative
-  height: 120px
-  width: 100%
-  background-color: $color-main
-  .footer-wrap
-    position: relative
-    max-width: 1000px
-    padding: 0 20px
-    margin: 0 auto
-    height: 120px
-    font-size: 13px
-    @media (max-width: 768px)
-      font-size: 12px
-    display: flex
-    flex-direction: column
-    justify-content: center
-    color: #999999
-    > p
-      margin: 4px 0
-      a
-        color: rgba(59, 116, 241, .8)
-        text-decoration: underline
+#m-footer {
+  height: auto !important;
+  background: #2e3033;
+  color: #fff;
+  padding: 2vh;
+
+  .footer-wrap {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+</style>
+
+
+<style lang="stylus" scoped>
+@media screen and (max-width: 750px) {
+}
 </style>

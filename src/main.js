@@ -7,10 +7,11 @@ import store from './store'
 import moment from 'moment';
 Vue.prototype.moment = moment;
 import VueSocketIO from 'vue-socket.io'
-
+//px自动转化rem
+import "lib-flexible/flexible.js"
 Vue.use(new VueSocketIO({
   debug: true,
-  connection: 'http://localhost:3001',  
+  connection: 'http://localhost:3001',
 }))
 
 Vue.use(ElementUI)

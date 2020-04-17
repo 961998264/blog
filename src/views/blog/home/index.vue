@@ -1,9 +1,12 @@
 <template>
   <div id="home" v-loading="loading">
-    <div :gutter="20" class="article-list">
-      <el-col :span="4" v-for="(article, index) in articleList" :key="index">
-        <article-card :article="article" />
-      </el-col>
+    <div class="article-list">
+      <el-row>
+        <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="6" v-for="(article, index) in articleList"
+          :key="index">
+          <article-card :article="article" />
+        </el-col>
+      </el-row>
     </div>
     <!-- 分页 -->
     <div class="pagination" v-show="total > 0">
@@ -85,14 +88,13 @@ export default {
 
   .article-list {
     margin: 0 auto;
-    width: 80%;
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
 
-    .article-list-item {
-      width: 30%;
-      border: 1px solid red;
+    .articlr-list-item {
+      width: 25%;
+      display: flex;
+      justify-content: center;
     }
   }
 
@@ -105,10 +107,6 @@ export default {
     justify-content: center;
     background-color: $color-white;
   }
-}
-
-.slide-fade-enter, .slide-fade-leave-to {
-  opacity: 0;
 }
 </style>
 
@@ -153,4 +151,4 @@ export default {
   }
 }
 </style>
-</style>
+

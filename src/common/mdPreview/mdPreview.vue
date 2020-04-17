@@ -15,14 +15,14 @@ import markdown from '../../util/markdown.js'
 export default {
   name: 'md-preview',
   props: ['contents'],
-  data() {
-    return  {
+  data () {
+    return {
       imgList: []
     }
   },
   components: {
   },
-  created() {
+  created () {
   },
   watch: {
     contents (content) {
@@ -30,10 +30,10 @@ export default {
       setTimeout(this.init, 1000)
     }
   },
-  mounted() {
+  mounted () {
     setTimeout(this.init, 1000)
   },
-  beforeDestroy() {
+  beforeDestroy () {
     this.setArticleMenuTag('1.')
     this.setArticleMenuSource([])
     this.setArticleMenu(false)
@@ -44,12 +44,12 @@ export default {
       'setArticleMenuSource',
       'setArticleMenuTag'
     ]),
-    init() {
+    init () {
       document.body.scrollTop = document.documentElement.scrollTop = 0
       this.getImg()
       this.getMenu()
     },
-    getImg() {
+    getImg () {
       let imgDomList = document.getElementById('markdown-preview-body').getElementsByTagName('img')
       this.imgList = []
       Array.prototype.slice.call(imgDomList).forEach((img, index) => {
@@ -63,10 +63,10 @@ export default {
         })
       })
     },
-    showBigImg(e) {
+    showBigImg (e) {
       this.$photoPreview.open(e.target.indexTag, this.imgList)
     },
-    getMenu() {
+    getMenu () {
       let headNodes = document.getElementById('markdown-preview-body').getElementsByClassName('my-blog-head')
       let headList = []
       let pos = 0
@@ -89,7 +89,7 @@ export default {
       this.setArticleMenuSource(source)
       this.setArticleMenu(tree)
     },
-    treeify(data, tag) {
+    treeify (data, tag) {
       let tree = []
       let index = 0
       data.forEach(item => {
@@ -134,9 +134,11 @@ export default {
 <style lang="stylus" src="STYLUS/markdown.styl"></style>
 
 <style lang="stylus">
-@import '~STYLUS/color.styl'
-#md-preview
-  position: relative
-  width: 100%
-  margin-top: 10px
+@import '~STYLUS/color.styl';
+
+#md-preview {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
 </style>

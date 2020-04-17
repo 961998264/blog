@@ -5,7 +5,8 @@ const categories = r => require.ensure([], () => r(require('VIEWS/blog/categorie
 const archives = r => require.ensure([], () => r(require('VIEWS/blog/archives/index.vue')), 'archives')
 const chart_login = r => require.ensure([], () => r(require('VIEWS/blog/chart/login/index.vue')), 'chart_login')
 const chart = r => require.ensure([], () => r(require('VIEWS/blog/chart/index.vue')), 'chart')
-
+const word = r => require.ensure([], () => r(require('VIEWS/blog/word/index.vue')), 'word')
+const addWord = r => require.ensure([], () => r(require('VIEWS/blog/word/add.vue')), 'newWord')
 export default [
   {
     path: '*',
@@ -15,6 +16,16 @@ export default [
     component: home,
     path: '/home',
     name: 'home',
+  },
+  {
+    component: word,
+    path: '/word/',
+    name: 'word',
+  },
+  {
+    component: addWord,
+    path: '/word/addword',
+    name: 'addWord',
   },
   {
     path: '/about',

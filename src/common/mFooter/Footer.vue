@@ -1,7 +1,10 @@
 <template>
   <div id="m-footer">
-    <div class="footer-wrap">
-      这是一句话简介
+    <div class="m-footer-top">
+      总访问量：88888
+    </div>
+    <div class="m-footer-bottom">
+
     </div>
   </div>
 </template>
@@ -40,17 +43,22 @@ export default {
 
 <style lang="stylus" scoped>
 #m-footer {
-  height: auto !important;
-  background: #2e3033;
+  height: 100px !important;
   color: #fff;
-  padding: 2vh;
 
-  .footer-wrap {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  .m-footer-top {
+    height: 50%;
+    color: #a0a8db;
+    background: #4f60c3;
+    width: 100%;
+    text-align: center;
+    line-height: 50px;
+  }
+
+  .m-footer-bottom {
+    height: 50%;
+    background: #3F51B5;
+    width: 100%;
   }
 }
 </style>

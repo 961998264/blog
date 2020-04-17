@@ -162,25 +162,11 @@ export default {
     }
   }
 }
+</style>
 
-.slide-fade-enter-active {
-  transition: all 0.3s ease;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.3s ease;
-}
-
-.slide-fade-enter, .slide-fade-leave-to {
-  transform: translateY(20px);
-  opacity: 0;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0;
+<style lang="stylus" >
+.iconfont {
+  width: 14px !important;
+  height: 14px !important;
 }
 </style>

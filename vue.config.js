@@ -16,6 +16,9 @@ function resolve (dir) {
 module.exports = {
   css: {
     loaderOptions: {
+      less: {
+        javascriptEnabled: true
+      },
       postcss: {
         plugins: [
           // 把px单位换算成rem单位
@@ -54,6 +57,14 @@ module.exports = {
       chunkFilename: assetsPath('js/[id].[hash].js')
     },
   },
+  pluginOptions: {
+    // 'style-resources-loader': {
+    //   preProcessor: 'less',
+    //   patterns: [
+    //     path.resolve(__dirname, './src/assets/css/style.less'),
+    //   ]
+    // }
+  },
   chainWebpack: config => { // webpack链接API，用于生成和修改webapck配置，
     config.resolve.alias
       .set('CONFIG', resolve('src/config'))
@@ -80,10 +91,7 @@ module.exports = {
     }
   },
   // parallel: require('os').cpus().length > 1, // 构建时开启多进程处理babel编译
-  // pluginOptions: { // 第三方插件配置
-  // },
-  // pwa: { // 单页插件相关配置 https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
-  // },
+
   devServer: {
     open: true,
     host: 'localhost',

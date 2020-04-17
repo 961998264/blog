@@ -13,7 +13,9 @@ Vue.use(new VueSocketIO({
   debug: true,
   connection: 'http://localhost:3001',
 }))
-
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
+Vue.use(Antd)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 new Vue({

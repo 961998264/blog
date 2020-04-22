@@ -8,20 +8,12 @@
           format="YYYY-MM-DD HH:mm:ss" />
       </a-form-item>
       <a-form-item label="本周工作总结">
-        <a-select v-decorator="[
-          'gender',
-          { rules: [{ required: true, message: 'Please select your gender!' }] },
-        ]" placeholder="Select a option and change input text above" @change="handleSelectChange">
-          <a-select-option value="male">
-            male
-          </a-select-option>
-          <a-select-option value="下周工作计划">
-            female
-          </a-select-option>
-        </a-select>
+
+        <m-word :content="form.content" @changeConten='changeConten'
+          v-decorator="['content',{rules:[{required:true,message:'请填写本周工作总结'}]}]"></m-word>
       </a-form-item>
       <a-form-item label="需协调与帮助">
-        <a-input />
+        <m-word></m-word>
       </a-form-item>
       <a-row>
       </a-row>
@@ -39,14 +31,27 @@
   </div>
 </template>
 <script>
+import mWord from '@/components/word/word.vue'
 export default {
+  components: {
+    mWord
+  },
   data () {
     return {
+      from: {
+        content: "",
+      },
+      config: {
+        rules: [{ type: 'object', required: true, message: '请选择周报日期' }],
+      },
       formLayout: 'horizontal',
       form: this.$form.createForm(this, { name: 'coordinated' }),
     };
   },
   methods: {
+    changeConten (val) {
+      this.form.content = val
+    },
     handleSubmit (e) {
       e.preventDefault();
       this.form.validateFields((err, values) => {
@@ -85,5 +90,9 @@ export default {
       border-radius: 5px;
     }
   }
+}
+
+.test {
+  margin-right: 500px;
 }
 </style>

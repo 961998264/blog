@@ -2,7 +2,6 @@
   <div class="main">
     <a-card title="查询">
       <a-form-model layout="inline" :model="form" labelAlign="left">
-
         <a-row>
           <a-col :span="6">
             <a-form-model-item label="周报名称" :label-col="{ span: 8 }" :wrapper-col="{ span: 16 }">
@@ -39,7 +38,9 @@
     </a-card>
 
     <div style="margin-top:48px">
-      <a-button type="primary" style="margin-bottom:28px">新增</a-button>
+      <a-button type="primary" style="margin-bottom:28px" @click="()=>{$router.push('/word/add')}">
+        新增
+      </a-button>
 
       <a-card>
         <a-table :columns="columns" :dataSource="data" bordered></a-table>

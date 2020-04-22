@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@packy-tang/vue-tinymce": "^1.0.0",
     "ant-design-vue": "^1.5.3",
     "axios": "~0.18.0",
     "babel-plugin-import": "^1.13.0",
@@ -23,6 +24,7 @@
     "moment": "^2.22.2",
     "normalize.css": "~8.0.0",
     "nprogress": "~0.2.0",
+    "officegen": "^0.6.4",
     "photoswipe": "~4.1.2",
     "qs": "~6.5.1",
     "sass-loader": "^8.0.2",

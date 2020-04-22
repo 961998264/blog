@@ -24,7 +24,7 @@ export default [
   },
   {
     component: addWord,
-    path: '/word/addword',
+    path: '/word/add',
     name: 'addWord',
   },
   {

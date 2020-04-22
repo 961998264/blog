@@ -151,3 +151,4 @@ docx.generate(out);// 服务端生成word
 export default () => {
   docx.generate(out)
 }
+console.log('这是test2')

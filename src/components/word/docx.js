@@ -151,15 +151,7 @@ docx.generate(out);// 服务端生成word
 export default () => {
   docx.generate(out)
 }
-
-
-console.log('dev提交')
-console.log('dev提交')
-console.log('dev提交')
-console.log('dev提交')
-console.log('dev提交')
-console.log('dev提交')
-console.log('dev提交')
-console.log('dev提交')
-console.log('dev提交')
-console.log('dev提交')
+console.log('这是test2')
+console.log('这是test2')
+console.log('这是test2')
+console.log('这是test2')

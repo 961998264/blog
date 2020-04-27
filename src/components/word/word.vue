@@ -55,17 +55,6 @@ export default {
     }
   },
   mounted () {
-
-    console.log('dev提交')
-    console.log('dev提交')
-    console.log('dev提交')
-    console.log('dev提交')
-    console.log('dev提交')
-    console.log('dev提交')
-    console.log('dev提交')
-    console.log('dev提交')
-    console.log('dev提交')
-    console.log('dev提交')
     this.initTinymce()
   },
   methods: {

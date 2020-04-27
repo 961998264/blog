@@ -7,59 +7,68 @@ const chart_login = r => require.ensure([], () => r(require('VIEWS/blog/chart/lo
 const chart = r => require.ensure([], () => r(require('VIEWS/blog/chart/index.vue')), 'chart')
 const word = r => require.ensure([], () => r(require('VIEWS/blog/word/index.vue')), 'word')
 const addWord = r => require.ensure([], () => r(require('VIEWS/blog/word/add.vue')), 'newWord')
+import Layout from '../../layout'
 export default [
   {
-    path: '*',
-    redirect: '/home'
+    component: Layout,
+    path: '/',
+    name: '',
+    children: [
+      {
+        component: home,
+        path: '/home',
+        name: 'home',
+      },
+      {
+        component: word,
+        path: '/word/',
+        name: 'word',
+        children: [
+          {
+            component: addWord,
+            path: '/word/add',
+            name: 'addWord',
+          },
+        ]
+      },
+
+      {
+        path: '/about',
+        name: 'about',
+        component: about
+      },
+      {
+        path: '/article',
+        name: 'article',
+        component: article
+      },
+      {
+        path: '/categories',
+        name: 'categories',
+        component: categories
+      },
+      {
+        path: '/archives',
+        name: 'archives',
+        component: archives
+      },
+      {
+        path: '/article',
+        name: 'article',
+        component: article
+      },
+      {
+        path: '/chart_login',
+        name: 'chart_login',
+        component: chart_login
+      },
+      {
+        path: '/chart',
+        name: 'chart',
+        component: chart
+      },
+    ]
   },
-  {
-    component: home,
-    path: '/home',
-    name: 'home',
-  },
-  {
-    component: word,
-    path: '/word/',
-    name: 'word',
-  },
-  {
-    component: addWord,
-    path: '/word/add',
-    name: 'addWord',
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: about
-  },
-  {
-    path: '/article',
-    name: 'article',
-    component: article
-  },
-  {
-    path: '/categories',
-    name: 'categories',
-    component: categories
-  },
-  {
-    path: '/archives',
-    name: 'archives',
-    component: archives
-  },
-  {
-    path: '/article',
-    name: 'article',
-    component: article
-  },
-  {
-    path: '/chart_login',
-    name: 'chart_login',
-    component: chart_login
-  },
-  {
-    path: '/chart',
-    name: 'chart',
-    component: chart
-  },
+
+
 ]

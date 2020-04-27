@@ -1,5 +1,6 @@
 <template>
   <div class='main-wrap'>
+    <h1>login</h1>
     <router-view></router-view>
   </div>
 </template>
@@ -16,7 +17,6 @@ export default {
     }
   },
   methods: {
-    async initData () { }
   },
   computed: {
 
@@ -25,7 +25,6 @@ export default {
 
   },
   created () {
-    this.initData()
   },
   mounted () { },
 }
@@ -35,4 +34,3 @@ export default {
 .main-wrap {
 }
 </style>
-

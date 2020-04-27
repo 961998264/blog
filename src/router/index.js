@@ -4,10 +4,10 @@ import VueRouter from 'vue-router'
 
 import blog from './modules/blog'
 // import admin from './modules/admin'
+import Login from 'VIEWS/blog/login/index.vue'
 
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-
 // import {
 //   getAccessToken
 // } from 'API/cacheService'
@@ -19,9 +19,9 @@ Vue.use(VueRouter)
 
 const routes = [
   // ...admin,
-  ...blog
+  ...blog,
+  { path: '/login', name: '登录', component: Login }
 ]
-
 const router = new VueRouter({
   mode: 'history',
   routes,

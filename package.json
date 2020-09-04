@@ -19,7 +19,7 @@
     "flex.css": "~1.1.7",
     "highlight.js": "~9.12.0",
     "lib-flexible": "^0.3.2",
-    "marked": "~0.4.0",
+    "marked": "~0.7.0",
     "mavon-editor": "~2.6.15",
     "moment": "^2.22.2",
     "normalize.css": "~8.0.0",

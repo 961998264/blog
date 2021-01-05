@@ -9,7 +9,7 @@
   "dependencies": {
     "@packy-tang/vue-tinymce": "^1.0.0",
     "ant-design-vue": "^1.5.3",
-    "axios": "~0.18.0",
+    "axios": "~0.21.1",
     "babel-plugin-import": "^1.13.0",
     "core-js": "^3.6.4",
     "cropperjs": "~1.4.1",
